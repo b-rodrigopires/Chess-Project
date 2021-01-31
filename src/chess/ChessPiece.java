@@ -24,8 +24,4 @@ public abstract class ChessPiece extends Piece {
 		this.moveCount = moveCount;
 	}
 
-	@Override
-	public boolean[][] possibleMoves() {
-		return null;
-	}
 }
