@@ -39,6 +39,7 @@ public class ChessMatch {
 		Position source = sourcePosition.toPosition();
 		Position target = targetPosition.toPosition();
 		validateSourcePosition(source);
+		validateTargetPosition(source, target);
 		Piece capturedPiece = makeMove(source, target);
 		return (ChessPiece) capturedPiece;
 	}
@@ -49,6 +50,12 @@ public class ChessMatch {
 		}
 		if (!board.piece(position).isThereAnyPossibleMove()) {
 			throw new ChessException("There is no possible moves for the chosen piece");
+		}
+	}
+	
+	private void validateTargetPosition(Position source, Position target) {
+		if (!board.piece(source).possibleMove(target)) {
+			throw new ChessException("The chosen piece can't move to target position");
 		}
 	}
 	
@@ -82,10 +89,10 @@ public class ChessMatch {
 		placeNewPiece('g', 8 ,new Knight(board, Color.BLACK));
 		placeNewPiece('h', 8 ,new Rook(board, Color.BLACK));
 		
-		for (char a = 'a'; a <= 'h'; a++) {
-			placeNewPiece(a, 2 ,new Pawn(board, Color.WHITE));
-			placeNewPiece(a, 7 ,new Pawn(board, Color.BLACK));
-			
-		}
+//		for (char a = 'a'; a <= 'h'; a++) {
+//			placeNewPiece(a, 2 ,new Pawn(board, Color.WHITE));
+//			placeNewPiece(a, 7 ,new Pawn(board, Color.BLACK));
+//			
+//		}
 	}
 }
